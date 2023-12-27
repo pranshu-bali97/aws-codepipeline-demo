@@ -1,24 +1,22 @@
 version: 0.2
-
 phases:
-  install:
+  pre_build:
     commands:
-      - echo Installing Node 16...
-      - yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
-      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-      - yum install --no-install-recommends 
-    build:
-    commands:
-      - echo Installing dependencies...
-      - yum
+      #installs dependencies into the node_modules/ directory
+      - npm install
   build:
     commands:
-      - echo Testing...
-      - yum test
-      - echo Building...
-      - yum build
+      - echo Build started on `date`
+      - echo Compiling
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
 artifacts:
   files:
-    - "**/*"
-  discard-paths: no
-  base-directory: dist
+    - public/**/*
+    - src/**/*
+    - package.json
+    - appspec.yml
+    - scripts/**/*
