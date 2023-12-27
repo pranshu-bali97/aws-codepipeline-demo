@@ -1,22 +1,30 @@
 version: 0.2
 phases:
-  pre_build:
+  install:
+    runtime-versions:
+      nodejs: 16
     commands:
-      #installs dependencies into the node_modules/ directory
+      - "echo Installing NPM dependencies..."
       - npm install
+      #- npm install -g typescript@5.1.6
+
+
+  pre_build: 
+    commands: 
+      - "echo copy variables"
+      #- aws s3 cp s3://botb-env-files-prepod/API_env/env.user .
+      #- mv env.user .env.preprod
+      - ls -la $CODEBUILD_SRC_DIR
+      - pwd $CODEBUILD_SRC_DIR
+    
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling
+      - echo Build started on date
+      #- export NODE_OPTIONS=--max_old_space_size=7168
       - npm run build
   post_build:
     commands:
-      - echo Build completed on `date`
-# Include only the files required for your application to run.
+      - echo Build completed on date
 artifacts:
   files:
-    - public/**/*
-    - src/**/*
-    - package.json
-    - appspec.yml
-    - scripts/**/*
+    - '**/*'
