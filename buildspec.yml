@@ -12,13 +12,13 @@ phases:
   pre_build:
     commands:
       - echo Installing dependencies...
-      - yarn
+      - yum
   build:
     commands:
       - echo Testing...
-      - yarn test
+      - yum test
       - echo Building...
-      - yarn build
+      - yum build
 artifacts:
   files:
     - "**/*"
