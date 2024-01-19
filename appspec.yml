@@ -2,10 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/
-file_exists_behavior: OVERWRITE
-hooks:
-   ApplicationStart:
-   - location: scripts/start.sh
-     runas: root
-     timeout: 300
+    destination: /usr/share/nginx/html
