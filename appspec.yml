@@ -1,19 +1,13 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /deploy-nodejs-aws-cicd
+   - source: /
+     destination: /home/ssm-user/(directory name)
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 300
-      runas: root
+ BeforeInstall:
+   - location: scripts/before_script.sh
+     runas: root
 
-  ApplicationStart:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: root
-
-  ValidateService:
-    - location: scripts/validate_service.sh
-      timeout: 300
+ AfterInstall:
+   - location: scripts/after_script.sh
+     runas: root
