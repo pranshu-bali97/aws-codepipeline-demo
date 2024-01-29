@@ -1,12 +1,12 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html
+  - source: /
+    destination: /usr/share/nginx/html
 hooks:
-  Before Install:
-    - location: stop.sh
+  BeforeInstall:
+    - location: scripts/BeforeInstallHook.sh
       timeout: 300
-  After Install:
-    - location: start.sh
+  AfterInstall:
+    - location: scripts/AfterInstallHook.sh
       timeout: 300
